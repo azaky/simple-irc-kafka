@@ -34,6 +34,7 @@ Jika file tersebut tidak ada, maka kedua nilai tersebut akan dipakai secara defa
 - Client 1 dan Client 2 dijalankan.
 - Command yang dimasukkan berurut seperti berikut:
 
+
 	Client 1:
 	/NICK Willy
 	/JOIN grup
@@ -45,9 +46,11 @@ Jika file tersebut tidak ada, maka kedua nilai tersebut akan dipakai secara defa
 
 - Client 1 akan menerima pesan:
 
+
 	[grup] (Zaky) Halo
 
 - Client 2 akan menerima pesan:
+
 
 	[grup] (Zaky) HaloWilly – 13512070
 	Ahmad Zaky – 13512076
@@ -57,6 +60,7 @@ Jika file tersebut tidak ada, maka kedua nilai tersebut akan dipakai secara defa
 - Pertama server dijalankan
 - Client 1 dan Client 2 dijalankan.
 - Command yang dimasukkan berurut seperti berikut:
+
 
 	Client 1:
 	/NICK Willy
@@ -74,9 +78,11 @@ Jika file tersebut tidak ada, maka kedua nilai tersebut akan dipakai secara defa
 
 - Client 1 akan menerima pesan:
 
+
 	<tidak ada>
 
 - Client 2 akan menerima pesan:
+
 
 	[grup] (Zaky) Halo
 
@@ -86,6 +92,7 @@ Jika file tersebut tidak ada, maka kedua nilai tersebut akan dipakai secara defa
 - Client 1 dan Client 2 dijalankan.
 - Command yang dimasukkan berurut seperti berikut:
 
+
 	Client 1:
 	Halo
 
@@ -94,8 +101,10 @@ Jika file tersebut tidak ada, maka kedua nilai tersebut akan dipakai secara defa
 
 - Client 1 akan menerima pesan:
 
+
 	<tidak ada>
 
 - Client 2 akan menerima pesan:
+
 
 	<tidak ada>
