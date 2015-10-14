@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="simple-irc-kafka" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.tox/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.lib.classpath">
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module simple-irc-kafka -->
+  
+  <dirname property="module.simple-irc-kafka.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.simple-irc-kafka" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="simple-irc-kafka.output.dir" value="${module.simple-irc-kafka.basedir}/out/production/simple-irc-kafka"/>
+  <property name="simple-irc-kafka.testoutput.dir" value="${module.simple-irc-kafka.basedir}/out/test/simple-irc-kafka"/>
+  
+  <path id="simple-irc-kafka.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="simple-irc-kafka.module.production.classpath">
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="simple-irc-kafka.runtime.production.module.classpath">
+    <pathelement location="${simple-irc-kafka.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="simple-irc-kafka.module.classpath">
+    <pathelement location="${simple-irc-kafka.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="simple-irc-kafka.runtime.module.classpath">
+    <pathelement location="${simple-irc-kafka.testoutput.dir}"/>
+    <pathelement location="${simple-irc-kafka.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.simple-irc-kafka">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.simple-irc-kafka">
+    <patternset refid="excluded.from.module.simple-irc-kafka"/>
+  </patternset>
+  
+  <path id="simple-irc-kafka.module.sourcepath">
+    <dirset dir="${module.simple-irc-kafka.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.simple-irc-kafka" depends="compile.module.simple-irc-kafka.production,compile.module.simple-irc-kafka.tests" description="Compile module simple-irc-kafka"/>
+  
+  <target name="compile.module.simple-irc-kafka.production" description="Compile module simple-irc-kafka; production classes">
+    <mkdir dir="${simple-irc-kafka.output.dir}"/>
+    <javac destdir="${simple-irc-kafka.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.simple-irc-kafka}"/>
+      <bootclasspath refid="simple-irc-kafka.module.bootclasspath"/>
+      <classpath refid="simple-irc-kafka.module.production.classpath"/>
+      <src refid="simple-irc-kafka.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.simple-irc-kafka"/>
+    </javac>
+    
+    <copy todir="${simple-irc-kafka.output.dir}">
+      <fileset dir="${module.simple-irc-kafka.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.simple-irc-kafka.tests" depends="compile.module.simple-irc-kafka.production" description="compile module simple-irc-kafka; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.simple-irc-kafka" description="cleanup module">
+    <delete dir="${simple-irc-kafka.output.dir}"/>
+    <delete dir="${simple-irc-kafka.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.simple-irc-kafka" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.simple-irc-kafka" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.simple-irc-kafka:jar" value="${basedir}/build"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.simple-irc-kafka.jar" value="${artifacts.temp.dir}/simple-irc-kafka.jar"/>
+  </target>
+  
+  <target name="artifact.simple-irc-kafka:jar" depends="init.artifacts, compile.module.simple-irc-kafka" description="Build &#39;simple-irc-kafka:jar&#39; artifact">
+    <property name="artifact.temp.output.simple-irc-kafka:jar" value="${artifacts.temp.dir}/simple_irc_kafka_jar"/>
+    <mkdir dir="${artifact.temp.output.simple-irc-kafka:jar}"/>
+    <jar destfile="${temp.jar.path.simple-irc-kafka.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${simple-irc-kafka.output.dir}"/>
+      <zipfileset src="${basedir}/lib/log4j-1.2.16.jar"/>
+      <zipfileset src="${basedir}/lib/zkclient-0.3.jar"/>
+      <zipfileset src="${basedir}/lib/slf4j-api-1.7.6.jar"/>
+      <zipfileset src="${basedir}/lib/zookeeper-3.4.6.jar"/>
+      <zipfileset src="${basedir}/lib/commons-lang3-3.4.jar"/>
+      <zipfileset src="${basedir}/lib/kafka_2.10-0.8.2.2.jar"/>
+      <zipfileset src="${basedir}/lib/metrics-core-2.2.0.jar"/>
+      <zipfileset src="${basedir}/lib/slf4j-log4j12-1.6.1.jar"/>
+      <zipfileset src="${basedir}/lib/scala-library-2.10.4.jar"/>
+      <zipfileset src="${basedir}/lib/kafka-clients-0.8.2.2.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="com.client.ClientLauncher"/>
+      </manifest>
+    </jar>
+    <copy file="${temp.jar.path.simple-irc-kafka.jar}" tofile="${artifact.temp.output.simple-irc-kafka:jar}/simple-irc-kafka.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.simple-irc-kafka:jar" description="Build all artifacts">
+    <mkdir dir="${artifact.output.simple-irc-kafka:jar}"/>
+    <copy todir="${artifact.output.simple-irc-kafka:jar}">
+      <fileset dir="${artifact.temp.output.simple-irc-kafka:jar}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
